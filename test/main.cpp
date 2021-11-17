@@ -1,13 +1,15 @@
 #include <cstdio>
 
-#include "vm/vm.hpp"
+#include "vvm.hpp"
+
+using namespace vvm;
 
 int main() {
     printf("Hello World.\n");
 
-    vm::v2 v(1, 2);
+    v2 v(1, 2);
 
-    vm::m2 m;
+    m2 m;
     m.cols[0] = {1, 1};
     m.cols[1] = {0, 2};
 

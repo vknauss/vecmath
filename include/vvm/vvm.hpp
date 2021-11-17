@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vm {
+namespace vvm {
 
 // basic templated vector and matrix types
 
@@ -284,13 +284,30 @@ constexpr vector<T, R> operator*(const matrix<T, R, C>& m,
 }
 
 // matrix-matrix multiplication, implemented as defined in linear algebra
-// in-place version
+
 template<typename T, int R1, int S, int C2>
-constexpr matrix<T, R1, C2> operator*(const matrix<T, R1, S>& m,
-    const matrix<T, S, C2>& v)
+constexpr matrix<T, R1, C2> operator*(const matrix<T, R1, S>& m1,
+    const matrix<T, S, C2>& m2)
 {
     matrix<T, R1, C2> result;
-    for (int i = 0; i < C; ++i) result += m.cols[i] * v.data[i];
+    for (int i = 0; i < C2; ++i) {
+        for (int j = 0; j < R1; ++j) {
+            result.cols[i].data[j] = (T) 0.0;
+            for (int k = 0; k < S; ++k) {
+                result.cols[i].data[j] += m1.cols[k].data[j] *
+                    m2.cols[i].data[k];
+            }
+        }
+    }
     return result;
+}
+
+// matrix-matrix multiplication, implemented as defined in linear algebra
+// in-place version (but implemented via copy/move so not really in-place)
+template<typename T, int R1, int S, int C2>
+constexpr matrix<T, R1, C2>& operator*=(matrix<T, R1, S>& m1,
+    const matrix<T, S, C2>& m2)
+{
+    return (m1 = m1 * m2);
 }
 };
