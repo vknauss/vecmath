@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/vincent/code/vecmath/build/Debug",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-11  -I/home/vincent/code/vecmath/test -g -std=gnu++17 -o CMakeFiles/vmtest.dir/test/main.cpp.o -c /home/vincent/code/vecmath/test/main.cpp",
+  "file": "/home/vincent/code/vecmath/test/main.cpp"
+}
+]
