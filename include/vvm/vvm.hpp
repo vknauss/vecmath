@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdio>
+
 namespace vvm {
 
 // basic templated vector and matrix types
@@ -294,6 +296,25 @@ constexpr matrix<T, R1, C2> operator*(const matrix<T, R1, S>& m1,
         for (int j = 0; j < R1; ++j) {
             result.cols[i].data[j] = (T) 0.0;
             for (int k = 0; k < S; ++k) {
+                result.cols[i].data[j] += m1.cols[k].data[j] *
+                    m2.cols[i].data[k];
+            }
+        }
+    }
+    return result;
+}
+
+// specialized matrix-matrix multiplication for square matrices
+template<typename T, int D>
+constexpr matrix<T, D, D> operator*(const matrix<T, D, D>& m1,
+    const matrix<T, D, D>& m2)
+{
+    printf("using specialized square matrix mul\n");
+    matrix<T, D, D> result;
+    for (int i = 0; i < D; ++i) {
+        for (int j = 0; j < D; ++j) {
+            result.cols[i].data[j] = 0;
+            for (int k = 0; k < D; ++k) {
                 result.cols[i].data[j] += m1.cols[k].data[j] *
                     m2.cols[i].data[k];
             }
