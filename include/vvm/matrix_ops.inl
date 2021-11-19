@@ -1,6 +1,6 @@
 #pragma once
 
-#include "matrix.hpp"
+#include "matrix_ops.hpp"
 
 
 namespace vvm {
@@ -75,9 +75,6 @@ constexpr v4<T> operator*(const m4<T>& m, const v4<T>& v) {
     return v.x * m[0] + v.y * m[1] + v.z * m[2] + v.w * m[3];
 }
 
-template<typename T, int D>
-constexpr matrix<T, D, D> identity();
-
 template<>
 constexpr m2f identity() {
     return m2f(1.0, 0.0,  0.0, 1.0);
@@ -92,6 +89,19 @@ template<>
 constexpr m4f identity() {
     return m4f(1.0, 0.0, 0.0, 0.0,  0.0, 1.0, 0.0, 0.0,  0.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 0.0, 1.0);
+}
+
+template<typename T, int D1, int D2>
+constexpr matrix<T, D1, D2> outerProduct(const vector<T, D1>& v1, const vector<T, D2>& v2) {
+    matrix<T, D1, D2> result;
+    for (int i = 0; i < D2; ++i) result[i] = v2[i] * v1;
+    return result;
+}
+
+// https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication
+template<typename T>
+constexpr m3<T> crossProduct(const v3<T>& v) {
+    return { 0, v.z, -v.y, -v.z, 0, v.x, v.y, -v.x, 0 };
 }
 
 }  // namespace vvm

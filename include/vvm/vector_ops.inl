@@ -1,6 +1,8 @@
 #pragma once
 
-#include "vector.hpp"
+#include "vector_ops.hpp"
+
+#include <cmath>
 
 
 namespace vvm {
@@ -192,6 +194,18 @@ constexpr T dot(const v3<T>& v1, const v3<T>& v2) {
 template<typename T>
 constexpr T dot(const v4<T>& v1, const v4<T>& v2) {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
+}
+
+template<typename T, int D>
+constexpr T length(const vector<T, D>& v) {
+    T sum = 0.0;
+    for (int i = 0; i < D; ++i) sum += v[i] * v[i];
+    return sqrt(sum);
+}
+
+template<typename T, int D>
+constexpr vector<T, D> normalize(const vector<T, D>& v) {
+    return v / length(v);
 }
 
 }  // namespace vvm

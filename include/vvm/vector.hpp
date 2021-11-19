@@ -16,22 +16,24 @@ struct vector<T, 2> {
         };
     };
 
+
+    constexpr vector() { }
+
     constexpr vector(T x, T y) :
-        x(x), y(y) { }
+        data {x, y} { }
 
     explicit constexpr vector(T v) :
-        vector(v, v) { }
-
-    constexpr vector() :
-        vector((T) 0.0) { }
+        data {v, v} { }
 
     explicit constexpr vector(const vector<T, 3>& v) :
-        vector(v.x, v.y) { }
+        data {v.x, v.y} { }
 
     explicit constexpr vector(const vector<T, 4>& v) :
-        vector(v.x, v.y) { }
+        data {v.x, v.y} { }
+    
 
     const T& operator[](int i) const { return data[i]; };
+
     T& operator[](int i) { return data[i]; };
 
 };
@@ -45,22 +47,24 @@ struct vector<T, 3> {
         };
     };
 
+
+    constexpr vector() { }
+
     constexpr vector(T x, T y, T z) :
-        x(x), y(y), z(z) { }
+        data {x, y, z} { }
 
     explicit constexpr vector(T v) :
-        vector(v, v, v) { }
+        data {v, v, v} { }
 
-    constexpr vector() :
-        vector((T) 0.0) { }
-        
     constexpr vector(const vector<T, 2>& v, T z) :
-        vector(v.x, v.y, z) { }
+        data {v.x, v.y, z} { }
 
-    explicit constexpr vector(const vector<T, 4>& v) :
-        vector(v.x, v.y, v.z) { }
-        
+    constexpr vector(const vector<T, 4>& v) :
+        data {v.x, v.y, v.z} { }
+
+
     const T& operator[](int i) const { return data[i]; };
+
     T& operator[](int i) { return data[i]; };
 };
 
@@ -73,39 +77,39 @@ struct vector<T, 4> {
         };
     };
 
+
+    constexpr vector() { }
+
     constexpr vector(T x, T y, T z, T w) :
-        x(x), y(y), z(z), w(w) { }
+        data {x, y, z, w} { }
 
     explicit constexpr vector(T v) :
-        vector(v, v, v, v) { }
-
-    constexpr vector() :
-        vector((T) 0.0) { }
+        data {v, v, v, v} { }
 
     constexpr vector(const vector<T, 2>& v, T z, T w) :
-        vector(v.x, v.y, z, w) { }
+        data {v.x, v.y, z, w} { }
 
     constexpr vector(const vector<T, 3>& v, T w) :
-        vector(v.x, v.y, v.z, w) { }
+        data {v.x, v.y, v.z, w} { }
         
+
     const T& operator[](int i) const { return data[i]; };
+
     T& operator[](int i) { return data[i]; };
 };
 
-// typedefs for very common specializations
+// aliases for very common specializations
 
-template<typename T>
-using v2 = vector<T, 2>;
+template<typename T> using v2 = vector<T, 2>;
+template<typename T> using v3 = vector<T, 3>;
+template<typename T> using v4 = vector<T, 4>;
+
 using v2f = v2<float>;
-
-template<typename T>
-using v3 = vector<T, 3>;
 using v3f = v3<float>;
-
-template<typename T>
-using v4 = vector<T, 4>;
 using v4f = v4<float>;
 
-}  // namespace vvm
+using v2d = v2<double>;
+using v3d = v3<double>;
+using v4d = v4<double>;
 
-#include "vector_ops.inl"
+}  // namespace vvm
