@@ -105,6 +105,15 @@ constexpr vector<T, D> max(const vector<T, D>& v1, const vector<T, D>& v2);
 template<typename T, int D>
 constexpr vector<T, D> abs(const vector<T, D>& v);
 
+template<typename T>
+constexpr T clamp(const T& v, const T& min, const T& max);
+
+template<typename T, int D>
+constexpr vector<T, D> clamp(const vector<T, D>& v, const vector<T, D>& min, const vector<T, D>& max);
+
+template<typename T, int D>
+constexpr vector<T, D> lerp(const vector<T, D>& v1, const vector<T, D>& v2, const T& x);
+
 // cross product only defined for 3D
 template<typename T>
 constexpr v3<T> cross(const v3<T>& v1, const v3<T>& v2);

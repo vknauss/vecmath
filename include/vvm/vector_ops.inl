@@ -229,4 +229,28 @@ constexpr vector<T, D> abs(const vector<T, D>& v) {
     return result;
 }
 
+template<typename T>
+constexpr T clamp(const T& v, const T& min, const T& max) {
+    return v < min ? min : (v > max ? max : v);
+}
+
+template<typename T, int D>
+constexpr vector<T, D> clamp(const vector<T, D>& v, const vector<T, D>& min, const vector<T, D>& max) {
+    vector<T, D> result;
+    for (int i = 0; i < D; ++i) {
+        result[i] = clamp(v[i], min[i], max[i]);
+    }
+    return result;
+}
+
+template<typename T, int D>
+constexpr vector<T, D> lerp(const vector<T, D>& v1, const vector<T, D>& v2, const T& x) {
+    vector<T, D> result;
+    T x0 = (T) 1.0 - x;
+    for (int i = 0; i < D; ++i) {
+        result[i] = v1[i] * x0 + v2[i] * x;
+    }
+    return result;
+}
+
 }  // namespace vvm
