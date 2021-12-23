@@ -26,6 +26,12 @@ template<typename T> struct matrix<T, 2, 2> {
     constexpr matrix(const col_type& c1, const col_type& c2) :
         cols {c1, c2} { }
 
+    explicit constexpr matrix(const matrix<T, 3, 3>& m) :
+        cols {m.cols[0], m.cols[1]} { }
+
+    explicit constexpr matrix(const matrix<T, 4, 4>& m) :
+        cols {m.cols[0], m.cols[1]} { }
+
 
     const col_type& operator[](int i) const { return cols[i]; }
 
@@ -53,6 +59,12 @@ template<typename T> struct matrix<T, 3, 3> {
     constexpr matrix(const col_type& c1, const col_type& c2,
             const col_type& c3) :
         cols {c1, c2, c3} { }
+
+    explicit constexpr matrix(const matrix<T, 2, 2>& m) :
+        cols {m.cols[0], m.cols[1], {0, 0, 1}} { }
+
+    explicit constexpr matrix(const matrix<T, 4, 4>& m) :
+        cols {m.cols[0], m.cols[1], m.cols[2]} { }
     
         
     const col_type& operator[](int i) const { return cols[i]; }
@@ -82,6 +94,13 @@ template<typename T> struct matrix<T, 4, 4> {
     constexpr matrix(const col_type& c1, const col_type& c2,
         const col_type& c3, const col_type& c4) :
         cols {c1, c2, c3, c4} { }
+    
+    explicit constexpr matrix(const matrix<T, 2, 2>& m) :
+        cols {{m.cols[0], 0, 0}, {m.cols[1], 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}} { }
+
+    explicit constexpr matrix(const matrix<T, 3, 3>& m) :
+        cols {{m.cols[0], 0}, {m.cols[1], 0}, {m.cols[2], 0}, {0, 0, 0, 1}} { }
+
         
         
     const col_type& operator[](int i) const { return cols[i]; }
