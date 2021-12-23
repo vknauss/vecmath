@@ -104,4 +104,24 @@ constexpr m3<T> crossProduct(const v3<T>& v) {
     return { 0, v.z, -v.y, -v.z, 0, v.x, v.y, -v.x, 0 };
 }
 
+template<typename T, int R, int C>
+constexpr matrix<T, R, C> abs(const matrix<T, R, C>& m) {
+    matrix<T, R, C> result;
+    for (int i = 0; i < C; ++i) {
+        result[i] = abs(m[i]);
+    }
+    return result;
+}
+
+template<typename T, int R, int C>
+constexpr matrix<T, C, R> transpose(const matrix<T, R, C>& m) {
+    matrix<T, C, R> result;
+    for (int i = 0; i < C; ++i) {
+        for (int j = 0; j < R; ++j) {
+            result[j][i] = m[i][j];
+        }
+    }
+    return result;
+}
+
 }  // namespace vvm

@@ -96,6 +96,14 @@ constexpr T length(const vector<T, D>& v);
 template<typename T, int D>
 constexpr vector<T, D> normalize(const vector<T, D>& v);
 
+template<typename T, int D>
+constexpr vector<T, D> min(const vector<T, D>& v1, const vector<T, D>& v2);
+
+template<typename T, int D>
+constexpr vector<T, D> max(const vector<T, D>& v1, const vector<T, D>& v2);
+
+template<typename T, int D>
+constexpr vector<T, D> abs(const vector<T, D>& v);
 
 // cross product only defined for 3D
 template<typename T>

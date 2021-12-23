@@ -208,4 +208,25 @@ constexpr vector<T, D> normalize(const vector<T, D>& v) {
     return v / length(v);
 }
 
+template<typename T, int D>
+constexpr vector<T, D> min(const vector<T, D>& v1, const vector<T, D>& v2) {
+    vector<T, D> result;
+    for (int i = 0; i < D; ++i) result[i] = v1[i] < v2[i] ? v1[i] : v2[i];
+    return result;
+}
+
+template<typename T, int D>
+constexpr vector<T, D> max(const vector<T, D>& v1, const vector<T, D>& v2) {
+    vector<T, D> result;
+    for (int i = 0; i < D; ++i) result[i] = v1[i] > v2[i] ? v1[i] : v2[i];
+    return result;
+}
+
+template<typename T, int D>
+constexpr vector<T, D> abs(const vector<T, D>& v) {
+    vector<T, D> result;
+    for (int i = 0; i < D; ++i) result[i] = v[i] >= 0 ? v[i] : -v[i];
+    return result;
+}
+
 }  // namespace vvm

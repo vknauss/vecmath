@@ -66,6 +66,22 @@ constexpr m3<T> rotate(const v3<T>& eulerAngles) {
         rotateX(eulerAngles.x);
 }
 
+template<typename T>
+constexpr m4<T> scale(const v3<T>& scale) {
+    return m4<T>(scale.x, 0, 0, 0,
+                 0, scale.y, 0, 0, 
+                 0, 0, scale.z, 0,
+                 0, 0, 0,       1);
+}
+
+template<typename T>
+constexpr m4<T> ortho(T zoom, T aspect) {
+    return m4<T>(
+        zoom / aspect, 0, 0, 0,
+        0, zoom, 0, 0,
+        0, 0, 0, 1,
+        0, 0, 0, 1);
+}
 
 
 }

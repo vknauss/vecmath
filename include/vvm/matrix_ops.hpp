@@ -32,6 +32,13 @@ constexpr matrix<T, D1, D2> outerProduct(const vector<T, D1>& v1, const vector<T
 template<typename T>
 constexpr m3<T> crossProduct(const v3<T>& v);
 
+template<typename T, int R, int C>
+constexpr matrix<T, R, C> abs(const matrix<T, R, C>& m);
+
+template<typename T, int R, int C>
+constexpr matrix<T, C, R> transpose(const matrix<T, R, C>& m);
+
+
 };
 
 #include "matrix_ops.inl"
