@@ -114,9 +114,23 @@ constexpr vector<T, D> clamp(const vector<T, D>& v, const vector<T, D>& min, con
 template<typename T, int D>
 constexpr vector<T, D> lerp(const vector<T, D>& v1, const vector<T, D>& v2, const T& x);
 
-// cross product only defined for 3D
+// cross product for 3d
 template<typename T>
 constexpr v3<T> cross(const v3<T>& v1, const v3<T>& v2);
+
+// various pseduo-cross products for 2d
+
+// returns the z-coordinate of the result of {v1.x, v1.y, 0} x {v2.x, v2.y, 0}
+template<typename T>
+T cross(const v2<T>& v1, const v2<T>& v2);
+
+// return ({v.x, v.y, 0} x {0, 0, z}).xy
+template<typename T>
+v2<T> cross(const v2<T>& v, const T& z);
+
+// same as above but order reversed
+template<typename T>
+v2<T> cross(const T& z, const v2<T>& v);
 
 }
 

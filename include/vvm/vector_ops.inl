@@ -176,12 +176,6 @@ constexpr T dot(const vector<T, D>& v1, const vector<T, D>& v2) {
 }
 
 template<typename T>
-constexpr v3<T> cross(const v3<T>& v1, const v3<T>& v2) {
-    return v3<T>(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z,
-        v1.x * v2.y - v1.y * v2.x);
-}
-
-template<typename T>
 constexpr T dot(const v2<T>& v1, const v2<T>& v2) {
     return v1.x * v2.x + v1.y * v2.y;
 }
@@ -253,4 +247,23 @@ constexpr vector<T, D> lerp(const vector<T, D>& v1, const vector<T, D>& v2, cons
     return result;
 }
 
+template<typename T>
+constexpr v3<T> cross(const v3<T>& v1, const v3<T>& v2) {
+    return v3<T>(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x);
+}
+
+template<typename T>
+T cross(const v2<T>& v1, const v2<T>& v2) {
+    return v1.x * v2.y - v1.y * v2.x;
+}
+
+template<typename T>
+v2<T> cross(const v2<T>& v, const T& z) {
+    return v2<T>(v.y * z, -v.x * z);
+}
+
+template<typename T>
+v2<T> cross(const T& z, const v2<T>& v) {
+    return v2<T>(-v.y * z, v.x * z);
+}
 }  // namespace vvm
