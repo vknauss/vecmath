@@ -122,15 +122,15 @@ constexpr v3<T> cross(const v3<T>& v1, const v3<T>& v2);
 
 // returns the z-coordinate of the result of {v1.x, v1.y, 0} x {v2.x, v2.y, 0}
 template<typename T>
-T cross(const v2<T>& v1, const v2<T>& v2);
+constexpr T cross(const v2<T>& v1, const v2<T>& v2);
 
 // return ({v.x, v.y, 0} x {0, 0, z}).xy
 template<typename T>
-v2<T> cross(const v2<T>& v, const T& z);
+constexpr v2<T> cross(const v2<T>& v, const T& z);
 
 // same as above but order reversed
 template<typename T>
-v2<T> cross(const T& z, const v2<T>& v);
+constexpr v2<T> cross(const T& z, const v2<T>& v);
 
 }
 
