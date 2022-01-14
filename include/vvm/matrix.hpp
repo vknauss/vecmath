@@ -101,9 +101,8 @@ template<typename T> struct matrix<T, 4, 4> {
     explicit constexpr matrix(const matrix<T, 3, 3>& m) :
         cols {{m.cols[0], 0}, {m.cols[1], 0}, {m.cols[2], 0}, {0, 0, 0, 1}} { }
 
-        
-        
-    const col_type& operator[](int i) const { return cols[i]; }
+
+    constexpr const col_type& operator[](int i) const { return cols[i]; }
 
     col_type& operator[](int i) { return cols[i]; }
 };
