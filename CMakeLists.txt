@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 add_library(vvm INTERFACE)
 add_executable(vvmtest "")
 
-add_subdirectory("include/vvm")
+add_subdirectory("include")
 add_subdirectory("test")
 
 target_link_libraries(vvmtest
