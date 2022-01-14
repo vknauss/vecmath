@@ -33,7 +33,7 @@ template<typename T> struct matrix<T, 2, 2> {
         cols {m.cols[0], m.cols[1]} { }
 
 
-    const col_type& operator[](int i) const { return cols[i]; }
+    constexpr const col_type& operator[](int i) const { return cols[i]; }
 
     col_type& operator[](int i) { return cols[i]; }
 };
@@ -67,7 +67,7 @@ template<typename T> struct matrix<T, 3, 3> {
         cols {m.cols[0], m.cols[1], m.cols[2]} { }
     
         
-    const col_type& operator[](int i) const { return cols[i]; }
+    constexpr const col_type& operator[](int i) const { return cols[i]; }
 
     col_type& operator[](int i) { return cols[i]; }
 };
