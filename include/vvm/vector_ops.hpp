@@ -111,6 +111,9 @@ constexpr T clamp(const T& v, const T& min, const T& max);
 template<typename T, int D>
 constexpr vector<T, D> clamp(const vector<T, D>& v, const vector<T, D>& min, const vector<T, D>& max);
 
+template<typename T1, typename T2>
+constexpr T1 lerp(const T1& v1, const T1& v2, const T2& x);
+
 template<typename T, int D>
 constexpr vector<T, D> lerp(const vector<T, D>& v1, const vector<T, D>& v2, const T& x);
 

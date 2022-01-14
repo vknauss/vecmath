@@ -237,6 +237,11 @@ constexpr vector<T, D> clamp(const vector<T, D>& v, const vector<T, D>& min, con
     return result;
 }
 
+template<typename T1, typename T2>
+constexpr T1 lerp(const T1& v1, const T1& v2, const T2& x) {
+    return ((T2) 1.0 - x) * v1 + x * v2;
+}
+
 template<typename T, int D>
 constexpr vector<T, D> lerp(const vector<T, D>& v1, const vector<T, D>& v2, const T& x) {
     vector<T, D> result;
