@@ -32,6 +32,9 @@ constexpr m<T> scale(const v3<T>& scale);
 template<typename T>
 constexpr m4<T> ortho(T zoom, T aspect);
 
+template<typename T>
+constexpr m4<T> perspective(T fov, T aspect, T near, T far);
+
 };
 
 #include "matrix_tfm.inl"

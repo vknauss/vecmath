@@ -83,5 +83,18 @@ constexpr m4<T> ortho(T zoom, T aspect) {
         0, 0, 0, 1);
 }
 
+// stolen from glm
+// https://github.com/g-truc/glm/blob/0.9.5/glm/gtc/matrix_transform.inl#L207-L229
+template<typename T>
+constexpr m4<T> perspective(T fov, T aspect, T near, T far) {
+    T scale = 1.0 / std::tan(0.5 * fov);
+    T zscale = -1.0 / (far - near);
+    return m4<T>(
+        scale / aspect, 0,  0, 0,
+        0, scale, 0, 0,
+        0, 0, (far + near) * zscale, -1,
+        0, 0, 2.0 * far * near * zscale, 0
+    );
+}
 
 }
