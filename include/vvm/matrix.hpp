@@ -7,11 +7,13 @@ namespace vvm {
 template<typename T, int R, int C> struct matrix;
 
 template<typename T> struct matrix<T, 2, 2> {
-    typedef v2<T> col_type;
+    using column_t = v2<T>;
+
+    static constexpr int rows = 2, columns = 2;
     
     union {
         T data[4];
-        col_type cols[2];
+        column_t cols[2];
     };
 
 
@@ -23,7 +25,7 @@ template<typename T> struct matrix<T, 2, 2> {
     explicit constexpr matrix(T v) :
         data {v, v, v, v} { }
 
-    constexpr matrix(const col_type& c1, const col_type& c2) :
+    constexpr matrix(const column_t& c1, const column_t& c2) :
         cols {c1, c2} { }
 
     explicit constexpr matrix(const matrix<T, 3, 3>& m) :
@@ -33,17 +35,19 @@ template<typename T> struct matrix<T, 2, 2> {
         cols {m.cols[0], m.cols[1]} { }
 
 
-    constexpr const col_type& operator[](int i) const { return cols[i]; }
+    constexpr const column_t& operator[](int i) const { return cols[i]; }
 
-    col_type& operator[](int i) { return cols[i]; }
+    column_t& operator[](int i) { return cols[i]; }
 };
 
 template<typename T> struct matrix<T, 3, 3> {
-    typedef v3<T> col_type;
+    using column_t = v3<T>;
+
+    static constexpr int rows = 3, columns = 3;
     
     union {
         T data[9];
-        col_type cols[3];
+        column_t cols[3];
     };
 
 
@@ -56,8 +60,8 @@ template<typename T> struct matrix<T, 3, 3> {
     explicit constexpr matrix(T v) :
         data {v, v, v, v, v, v, v, v, v} { }
 
-    constexpr matrix(const col_type& c1, const col_type& c2,
-            const col_type& c3) :
+    constexpr matrix(const column_t& c1, const column_t& c2,
+            const column_t& c3) :
         cols {c1, c2, c3} { }
 
     explicit constexpr matrix(const matrix<T, 2, 2>& m) :
@@ -67,17 +71,19 @@ template<typename T> struct matrix<T, 3, 3> {
         cols {m.cols[0], m.cols[1], m.cols[2]} { }
     
         
-    constexpr const col_type& operator[](int i) const { return cols[i]; }
+    constexpr const column_t& operator[](int i) const { return cols[i]; }
 
-    col_type& operator[](int i) { return cols[i]; }
+    column_t& operator[](int i) { return cols[i]; }
 };
 
 template<typename T> struct matrix<T, 4, 4> {
-    typedef v4<T> col_type;
+    using column_t = v4<T>;
+
+    static constexpr int rows = 4, columns = 4;
     
     union {
         T data[16];
-        col_type cols[4];
+        column_t cols[4];
     };
 
 
@@ -91,8 +97,8 @@ template<typename T> struct matrix<T, 4, 4> {
     explicit constexpr matrix(T v) :
         data {v, v, v, v,  v, v, v, v,  v, v, v, v,  v, v, v, v} { }
 
-    constexpr matrix(const col_type& c1, const col_type& c2,
-        const col_type& c3, const col_type& c4) :
+    constexpr matrix(const column_t& c1, const column_t& c2,
+        const column_t& c3, const column_t& c4) :
         cols {c1, c2, c3, c4} { }
     
     explicit constexpr matrix(const matrix<T, 2, 2>& m) :
@@ -102,9 +108,9 @@ template<typename T> struct matrix<T, 4, 4> {
         cols {{m.cols[0], 0}, {m.cols[1], 0}, {m.cols[2], 0}, {0, 0, 0, 1}} { }
 
 
-    constexpr const col_type& operator[](int i) const { return cols[i]; }
+    constexpr const column_t& operator[](int i) const { return cols[i]; }
 
-    col_type& operator[](int i) { return cols[i]; }
+    column_t& operator[](int i) { return cols[i]; }
 };
 
 // common types aliased for convenience

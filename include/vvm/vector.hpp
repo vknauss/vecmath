@@ -9,6 +9,11 @@ template<typename T, int D> struct vector;
 
 template<typename T>
 struct vector<T, 2> {
+
+    using component_t = T;
+    
+    static constexpr int dimension = 2;
+
     union {
         T data[2];
         struct {
@@ -32,7 +37,7 @@ struct vector<T, 2> {
         data {v.x, v.y} { }
     
 
-    const T& operator[](int i) const { return data[i]; };
+    constexpr const T& operator[](int i) const { return data[i]; };
 
     T& operator[](int i) { return data[i]; };
 
@@ -40,6 +45,11 @@ struct vector<T, 2> {
 
 template<typename T>
 struct vector<T, 3> {
+    
+    using component_t = T;
+    
+    static constexpr int dimension = 3;
+
     union {
         T data[3];
         struct {
@@ -63,13 +73,18 @@ struct vector<T, 3> {
         data {v.x, v.y, v.z} { }
 
 
-    const T& operator[](int i) const { return data[i]; };
+    constexpr const T& operator[](int i) const { return data[i]; };
 
     T& operator[](int i) { return data[i]; };
 };
 
 template<typename  T>
 struct vector<T, 4> {
+    
+    using component_t = T;
+    
+    static constexpr int dimension = 4;
+
     union {
         T data[4];
         struct {
@@ -93,7 +108,7 @@ struct vector<T, 4> {
         data {v.x, v.y, v.z, w} { }
         
 
-    const T& operator[](int i) const { return data[i]; };
+    constexpr const T& operator[](int i) const { return data[i]; };
 
     T& operator[](int i) { return data[i]; };
 };
