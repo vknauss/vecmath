@@ -66,7 +66,7 @@ struct vector<T, 3> {
     explicit constexpr vector(T v) :
         data {v, v, v} { }
 
-    constexpr vector(const vector<T, 2>& v, T z) :
+    constexpr vector(const vector<T, 2>& v, T z = static_cast<T>(0.0)) :
         data {v.x, v.y, z} { }
 
     constexpr vector(const vector<T, 4>& v) :
@@ -101,10 +101,10 @@ struct vector<T, 4> {
     explicit constexpr vector(T v) :
         data {v, v, v, v} { }
 
-    constexpr vector(const vector<T, 2>& v, T z, T w) :
+    constexpr vector(const vector<T, 2>& v, T z = static_cast<T>(0.0), T w = static_cast<T>(0.0)) :
         data {v.x, v.y, z, w} { }
 
-    constexpr vector(const vector<T, 3>& v, T w) :
+    constexpr vector(const vector<T, 3>& v, T w = static_cast<T>(0.0)) :
         data {v.x, v.y, v.z, w} { }
         
 
